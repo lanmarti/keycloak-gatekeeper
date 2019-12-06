@@ -1,5 +1,5 @@
 NAME=keycloak-gatekeeper
-AUTHOR=keycloak
+AUTHOR=lanmarti
 REGISTRY=docker.io
 GOVERSION ?= 1.10.2
 ROOT_DIR=${PWD}

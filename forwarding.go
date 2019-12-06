@@ -18,6 +18,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/coreos/go-oidc/jose"
@@ -51,6 +52,11 @@ func (r *oauthProxy) proxyMiddleware(next http.Handler) http.Handler {
 		// @step: add any custom headers to the request
 		for k, v := range r.config.Headers {
 			req.Header.Set(k, v)
+		}
+
+		if (r.config.PathPrefix != "") {
+			r.log.Info("Trying to strip prefix from request path", zap.String("path", req.URL.Path), zap.String("prefix", r.config.PathPrefix))
+			req.URL.Path = strings.TrimPrefix(req.URL.Path, r.config.PathPrefix)
 		}
 
 		// @note: by default goproxy only provides a forwarding proxy, thus all requests have to be absolute and we must update the host headers

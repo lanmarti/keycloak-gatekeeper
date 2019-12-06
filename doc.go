@@ -27,7 +27,7 @@ import (
 )
 
 var (
-	release  = "v2.3.0"
+	release  = "v2.3.2"
 	gitsha   = "no gitsha provided"
 	compiled = "0"
 	version  = ""
@@ -179,6 +179,8 @@ type Config struct {
 	BaseURI string `json:"base-uri" yaml:"base-uri" usage:"common prefix for all URIs" env:"BASE_URI"`
 	// OAuthURI is the uri for the oauth endpoints for the proxy
 	OAuthURI string `json:"oauth-uri" yaml:"oauth-uri" usage:"the uri for proxy oauth endpoints" env:"OAUTH_URI"`
+	// PathPrefix is the prefix that is stripped from the path going to the upstream endpoint
+	PathPrefix string `json:"path-prefix" yaml:"path-prefix" usage:"path prefix that will be stripped from the request going to the upstrea; endppoint" env:"PATH_PREFXI"`
 	// Scopes is a list of scope we should request
 	Scopes []string `json:"scopes" yaml:"scopes" usage:"list of scopes requested when authenticating the user"`
 	// Upstream is the upstream endpoint i.e whom were proxying to
